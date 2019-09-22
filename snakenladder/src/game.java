@@ -1636,8 +1636,8 @@ public class game extends JFrame {
         	   
         		
         		if(player[flag].position==100) {
-        			JOptionPane.showMessageDialog(null, "player "+flag+" WON!!!");
-        			lblwinningmessage.setText("PLAYER "+flag+" WON");
+        			JOptionPane.showMessageDialog(null,player[flag].name+" WON!!");
+        			lblwinningmessage.setText(player[flag].name+" WON");
         			 lblrestartmessage.setVisible(true);
         			rollbutton.setVisible(false);
         			lblrollpalyersymbol.setVisible(false);
@@ -1684,10 +1684,10 @@ public class game extends JFrame {
         lblsnake.setBounds(1064, 380, 157, 137);
         contentPane.add(lblsnake);
         lblsnake.setVisible(false);
-        
-        lblwinningmessage = new JLabel("");
+		
+          lblwinningmessage = new JLabel("");
         lblwinningmessage.setForeground(Color.BLUE);
-        lblwinningmessage.setFont(new Font("Tw Cen MT Condensed", Font.BOLD | Font.ITALIC, 38));
+        lblwinningmessage.setFont(new Font("Vivaldi", Font.BOLD | Font.ITALIC, 75));
         lblwinningmessage.setBounds(1168, 529, 271, 107);
         contentPane.add(lblwinningmessage);
         
