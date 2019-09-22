@@ -1491,26 +1491,27 @@ public class game extends JFrame {
         
         lblplayer1 = new JLabel(player[1].name);
         lblplayer1.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 32));
-        lblplayer1.setBounds(773, 217, 108, 49);
+        lblplayer1.setBounds(729, 217, 166, 49);
         contentPane.add(lblplayer1);
         
         
         lblpayer2 = new JLabel(player[2].name);
         lblpayer2.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 32));
-        lblpayer2.setBounds(773, 299, 122, 49);
+        lblpayer2.setBounds(729, 299, 166, 49);
         contentPane.add(lblpayer2);
         
         
         
         lblplayer3 = new JLabel(player[3].name);
         lblplayer3.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 32));
-        lblplayer3.setBounds(773, 380, 122, 42);
+        lblplayer3.setBounds(729, 380, 166, 42);
         contentPane.add(lblplayer3);
         
         lblPlayer4 = new JLabel(player[4].name);
         lblPlayer4.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 32));
-        lblPlayer4.setBounds(773, 457, 122, 42);
+        lblPlayer4.setBounds(729, 457, 166, 42);
         contentPane.add(lblPlayer4);
+        
         
      
         // declaring player symbol label to indicate whose chance it is.
@@ -1674,8 +1675,8 @@ public class game extends JFrame {
         displayroll.setBounds(304, 646, 152, 124);
         contentPane.add(displayroll);
         
-        JLabel lblNewLabel = new JLabel("DEVELOPED BY\r\nANKIT JOSHI");
-        lblNewLabel.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 20));
+       JLabel lblNewLabel = new JLabel("DEVELOPED BY\r\nANKIT JOSHI");
+        lblNewLabel.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 27));
         lblNewLabel.setBounds(995, 681, 499, 74);
         contentPane.add(lblNewLabel);
         
@@ -1684,11 +1685,11 @@ public class game extends JFrame {
         lblsnake.setBounds(1064, 380, 157, 137);
         contentPane.add(lblsnake);
         lblsnake.setVisible(false);
-		
-          lblwinningmessage = new JLabel("");
-        lblwinningmessage.setForeground(Color.BLUE);
-        lblwinningmessage.setFont(new Font("Vivaldi", Font.BOLD | Font.ITALIC, 75));
-        lblwinningmessage.setBounds(1168, 529, 271, 107);
+	 
+         lblwinningmessage = new JLabel("");
+        lblwinningmessage.setForeground(Color.BLACK);
+        lblwinningmessage.setFont(new Font("Vivaldi", Font.BOLD | Font.ITALIC, 65));
+        lblwinningmessage.setBounds(795, 527, 626, 93);
         contentPane.add(lblwinningmessage);
         
         lblrestartmessage = new JLabel("Press restart to play once more");
