@@ -1,6 +1,4 @@
 
-
-
 import java.awt.EventQueue;
 
 import javax.swing.ImageIcon;
@@ -20,6 +18,7 @@ import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 class players{
 public int position=1;
+public String name;
 
 }
 public class game extends JFrame {
@@ -33,7 +32,7 @@ public class game extends JFrame {
 	private int point;
     private int pos;
     int flag=1;
-    //
+    private int p;
 	private JLabel lbl91;
 	private JLabel lbl92;
 	private JLabel lbl93;
@@ -1040,13 +1039,28 @@ public class game extends JFrame {
 		
 		
 		//array of objects of players
-		players[] player= new players[5];
-		for(int i=1;i<nop+1;i++) {
-			player[i]=new players();
+		players[] player= new players[6];
+		for( p=1;p<5;p++) {
+			player[p]=new players();
 		}
-		
-		
 	
+		try{
+				
+				for(p=1;p<=nop;p++) {
+    					player[p].name = JOptionPane.showInputDialog("Enter Name of Player "+ String.valueOf(p)+" :");
+					
+				}
+			}catch(Exception e){
+				player[p].name="player "+p;
+			}
+	
+				
+		
+		
+		
+		
+		
+	   //  design of windows frame.
 		setTitle("SNAKE AND LADDER");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(4000,900);
@@ -1055,6 +1069,9 @@ public class game extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		
+		// declaring label for snake and ladder board boxes.
 		lbl1 = new JLabel("");
 		lbl1.setBounds(92, 576, 60, 60);
 		contentPane.add(lbl1);
@@ -1455,46 +1472,82 @@ public class game extends JFrame {
 		lbl91.setBounds(630, 38, 60, 60);
 		contentPane.add(lbl91);
 		
-		
+		// snake and ladder board label
 		 lblBoard = new JLabel("");
 		lblBoard.setBounds(92, 38, 600, 600);
         contentPane.add(lblBoard);
         lblBoard.setIcon(new ImageIcon(game.class.getResource("/images/Board Small 600 600.png")));
-        
+       
+        // game title label
         head = new JLabel("");
         head.setIcon(new ImageIcon(game.class.getResource("/images/head.png")));
         head.setBounds(773, 61, 571, 74);
         contentPane.add(head);
         
-        lblplayer1 = new JLabel("player 1");
+      
+       
+        
+        // declaring labels for player names
+        
+        lblplayer1 = new JLabel(player[1].name);
         lblplayer1.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 32));
         lblplayer1.setBounds(773, 217, 108, 49);
         contentPane.add(lblplayer1);
         
+        
+        lblpayer2 = new JLabel(player[2].name);
+        lblpayer2.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 32));
+        lblpayer2.setBounds(773, 299, 122, 49);
+        contentPane.add(lblpayer2);
+        
+        
+        
+        lblplayer3 = new JLabel(player[3].name);
+        lblplayer3.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 32));
+        lblplayer3.setBounds(773, 380, 122, 42);
+        contentPane.add(lblplayer3);
+        
+        lblPlayer4 = new JLabel(player[4].name);
+        lblPlayer4.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 32));
+        lblPlayer4.setBounds(773, 457, 122, 42);
+        contentPane.add(lblPlayer4);
+        
+     
+        // declaring player symbol label to indicate whose chance it is.
+        
+        lblrollpalyersymbol = new JLabel("");
+        lblrollpalyersymbol.setIcon(new ImageIcon(game.class.getResource("/images/player 1.png")));
+        lblrollpalyersymbol.setBounds(1311, 321, 50, 74);
+        contentPane.add(lblrollpalyersymbol);
+        
+        
+        // declaring labels for player symbols
         lblplayer1symbol = new JLabel("");
         lblplayer1symbol.setIcon(new ImageIcon(game.class.getResource("/images/player 1.png")));
         lblplayer1symbol.setBounds(921, 217, 50, 60);
         contentPane.add(lblplayer1symbol);
-        
-        lblpayer2 = new JLabel("player 2");
-        lblpayer2.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 32));
-        lblpayer2.setBounds(773, 299, 122, 49);
-        contentPane.add(lblpayer2);
         
         lblplayer2symbol = new JLabel("");
         lblplayer2symbol.setIcon(new ImageIcon(game.class.getResource("/images/player 2.png")));
         lblplayer2symbol.setBounds(921, 296, 60, 52);
         contentPane.add(lblplayer2symbol);
         
-        lblplayer3 = new JLabel("player 3");
-        lblplayer3.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 32));
-        lblplayer3.setBounds(773, 380, 122, 42);
-        contentPane.add(lblplayer3);
+       
         
         lblplayer3symbol = new JLabel("");
         lblplayer3symbol.setIcon(new ImageIcon(game.class.getResource("/images/player 3.png")));
         lblplayer3symbol.setBounds(921, 380, 50, 60);
         contentPane.add(lblplayer3symbol);
+       
+        
+        lblplayer4symbol = new JLabel("New label");
+        lblplayer4symbol.setIcon(new ImageIcon(game.class.getResource("/images/player 4.png")));
+        lblplayer4symbol.setBounds(921, 457, 50, 49);
+        contentPane.add(lblplayer4symbol);
+        
+        
+        // declaring labels for players position
+        
         lblpos1 = new JLabel("1");
         lblpos1.setFont(new Font("Yu Gothic Medium", Font.BOLD | Font.ITALIC, 33));
         lblpos1.setBounds(1007, 233, 80, 60);
@@ -1510,20 +1563,7 @@ public class game extends JFrame {
         lblpos3.setBounds(1007, 388, 80, 49);
         contentPane.add(lblpos3);
         
-        lblPlayer4 = new JLabel("player 4");
-        lblPlayer4.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 32));
-        lblPlayer4.setBounds(773, 457, 122, 42);
-        contentPane.add(lblPlayer4);
-        
-        lblplayer4symbol = new JLabel("New label");
-        lblplayer4symbol.setIcon(new ImageIcon(game.class.getResource("/images/player 4.png")));
-        lblplayer4symbol.setBounds(921, 457, 50, 49);
-        contentPane.add(lblplayer4symbol);
-        
-        lblrollpalyersymbol = new JLabel("");
-        lblrollpalyersymbol.setIcon(new ImageIcon(game.class.getResource("/images/player 1.png")));
-        lblrollpalyersymbol.setBounds(1311, 321, 50, 74);
-        contentPane.add(lblrollpalyersymbol);
+     
         
         lblpos4 = new JLabel("1");
         lblpos4.setFont(new Font("Yu Gothic Medium", Font.BOLD | Font.ITALIC, 33));
@@ -1667,4 +1707,6 @@ public class game extends JFrame {
 		}
 
 		
+
+
 
