@@ -1516,9 +1516,9 @@ public class game extends JFrame {
      
         // declaring player symbol label to indicate whose chance it is.
         
-        lblrollpalyersymbol = new JLabel("");
+       lblrollpalyersymbol = new JLabel("");
         lblrollpalyersymbol.setIcon(new ImageIcon(game.class.getResource("/images/player 1.png")));
-        lblrollpalyersymbol.setBounds(1311, 321, 50, 74);
+        lblrollpalyersymbol.setBounds(1279, 321, 50, 74);
         contentPane.add(lblrollpalyersymbol);
         
         
@@ -1611,10 +1611,10 @@ public class game extends JFrame {
         
         
         //roll button
-        rollbutton = new JButton("ROLL");
+       rollbutton = new JButton("ROLL");
         rollbutton.setForeground(Color.WHITE);
         rollbutton.setBackground(Color.RED);
-        rollbutton.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD | Font.ITALIC, 40));
+        rollbutton.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD | Font.ITALIC, 36));
         rollbutton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		lblsnake.setVisible(false);		
