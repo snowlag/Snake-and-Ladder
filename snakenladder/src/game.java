@@ -223,7 +223,7 @@ public class game extends JFrame {
 			lbl12.setVisible(false);
 		}
 		else if(x == 13){
-			lbl13.setVisible(false);/////she tonu r style a kotha bole
+			lbl13.setVisible(false);
 		}
 		else if(x == 14){
 			lbl14.setVisible(false);
