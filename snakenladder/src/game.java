@@ -1,4 +1,3 @@
-
 import java.awt.EventQueue;
 
 import javax.swing.ImageIcon;
@@ -1018,6 +1017,7 @@ public class game extends JFrame {
 	 * Create the frame.
 	 */
 	public game() {
+		setForeground(Color.PINK);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(game.class.getResource("/images/Snake0.png")));
 		
 		
@@ -1065,13 +1065,14 @@ public class game extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(4000,900);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.PINK);
 		contentPane.setForeground(Color.GREEN);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		
-		// declaring label for snake and ladder board boxes.
+		// declaring labels for snake and ladder board boxes.
 		lbl1 = new JLabel("");
 		lbl1.setBounds(92, 576, 60, 60);
 		contentPane.add(lbl1);
@@ -1491,7 +1492,7 @@ public class game extends JFrame {
         
         lblplayer1 = new JLabel(player[1].name);
         lblplayer1.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 32));
-        lblplayer1.setBounds(729, 217, 166, 49);
+        lblplayer1.setBounds(729, 217, 152, 49);
         contentPane.add(lblplayer1);
         
         
@@ -1509,16 +1510,15 @@ public class game extends JFrame {
         
         lblPlayer4 = new JLabel(player[4].name);
         lblPlayer4.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 32));
-        lblPlayer4.setBounds(729, 457, 166, 42);
+        lblPlayer4.setBounds(729, 457, 146, 42);
         contentPane.add(lblPlayer4);
-        
         
      
         // declaring player symbol label to indicate whose chance it is.
         
-       lblrollpalyersymbol = new JLabel("");
+        lblrollpalyersymbol = new JLabel("");
         lblrollpalyersymbol.setIcon(new ImageIcon(game.class.getResource("/images/player 1.png")));
-        lblrollpalyersymbol.setBounds(1279, 321, 50, 74);
+        lblrollpalyersymbol.setBounds(1287, 321, 50, 74);
         contentPane.add(lblrollpalyersymbol);
         
         
@@ -1611,9 +1611,9 @@ public class game extends JFrame {
         
         
         //roll button
-       rollbutton = new JButton("ROLL");
+        rollbutton = new JButton("ROLL");
         rollbutton.setForeground(Color.WHITE);
-        rollbutton.setBackground(Color.RED);
+        rollbutton.setBackground(new Color(255, 0, 0));
         rollbutton.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD | Font.ITALIC, 36));
         rollbutton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
@@ -1638,7 +1638,7 @@ public class game extends JFrame {
         		
         		if(player[flag].position==100) {
         			JOptionPane.showMessageDialog(null,player[flag].name+" WON!!");
-        			lblwinningmessage.setText(player[flag].name+" WON");
+        			lblwinningmessage.setText(player[flag].name.toUpperCase()+" WON");
         			 lblrestartmessage.setVisible(true);
         			rollbutton.setVisible(false);
         			lblrollpalyersymbol.setVisible(false);
@@ -1666,7 +1666,7 @@ public class game extends JFrame {
         
         
         
-        rollbutton.setBounds(1249, 408, 172, 60);
+        rollbutton.setBounds(1231, 408, 152, 60);
         contentPane.add(rollbutton);
         
         displayroll = new JLabel("");
@@ -1675,9 +1675,9 @@ public class game extends JFrame {
         displayroll.setBounds(304, 646, 152, 124);
         contentPane.add(displayroll);
         
-       JLabel lblNewLabel = new JLabel("DEVELOPED BY\r\nANKIT JOSHI");
+        JLabel lblNewLabel = new JLabel("DEVELOPED BY \r\nANKIT JOSHI");
         lblNewLabel.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 27));
-        lblNewLabel.setBounds(995, 681, 499, 74);
+        lblNewLabel.setBounds(1007, 680, 499, 74);
         contentPane.add(lblNewLabel);
         
         lblsnake = new JLabel("");
@@ -1685,10 +1685,10 @@ public class game extends JFrame {
         lblsnake.setBounds(1064, 380, 157, 137);
         contentPane.add(lblsnake);
         lblsnake.setVisible(false);
-	 
-         lblwinningmessage = new JLabel("");
+        
+        lblwinningmessage = new JLabel("");
         lblwinningmessage.setForeground(Color.BLACK);
-        lblwinningmessage.setFont(new Font("Vivaldi", Font.BOLD | Font.ITALIC, 65));
+        lblwinningmessage.setFont(new Font("Viner Hand ITC", Font.BOLD | Font.ITALIC, 55));
         lblwinningmessage.setBounds(795, 527, 626, 93);
         contentPane.add(lblwinningmessage);
         
@@ -1708,6 +1708,4 @@ public class game extends JFrame {
 		}
 
 		
-
-
 
