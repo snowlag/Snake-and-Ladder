@@ -12,3 +12,7 @@ To create the database here are the steps-
                  playername varchar(50) 
                  rolles int
                );
+  6) Download the mysql connector driver.
+    windows link-https://cdn.mysql.com//Downloads/Connector-J/mysql-connector-java-5.1.48.zip
+     you are ready to go!
+     (Note- dont create any password for mysql let it be defaut).
