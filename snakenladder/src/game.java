@@ -1,3 +1,4 @@
+
 import java.awt.EventQueue;
 
 import javax.swing.ImageIcon;
@@ -7,25 +8,34 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.mysql.jdbc.PreparedStatement;
 
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.*;
+
 import java.util.Random;
+
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
+
+
+
 class players{
 public int position=1;
 public String name;
-
+public int rollcount=0;
 }
+ 
 public class game extends JFrame {
 	
 	/**
 	 * 
 	 */
-	
+	public String name2;
+	public int point1;
 	private int k;
 	private int nop=4;
 	private int point;
@@ -154,6 +164,8 @@ public class game extends JFrame {
     private JLabel lblsnake;
     private JLabel lblwinningmessage;
     private JLabel lblrestartmessage;
+    private JLabel highscorepane;
+    private JLabel highscorepoint;
 	/**
 	 * Launch the application.
 	 */
@@ -171,6 +183,10 @@ public class game extends JFrame {
 			}
 		});
 	}
+	
+	
+ 	
+	
 
 	public void dice() {
 		Random rn = new Random();
@@ -490,7 +506,32 @@ public class game extends JFrame {
 		else if(x == 100){
 			lbl100.setVisible(false);
 		}
-	} //get current player symbol
+	} 
+	
+	public void database(String name,int rollcount) {
+		try {
+			
+			Class.forName("com.mysql.jdbc.Driver");  
+			java.sql.Connection con =  DriverManager.getConnection("jdbc:mysql://localhost:3306/game", "root","");
+			java.sql.PreparedStatement ps =con.prepareStatement("insert into score (playername,rolles) values(?,?);");
+		    ps.setString(1,name);
+		    ps.setLong(2,rollcount);
+		    int cc = ps.executeUpdate();
+		    if(cc>0) {
+		    	System.out.println("Player Registered");
+		    }
+		}
+			catch(Exception e) { 
+				System.out.println(e);
+  
+		}
+	}
+	
+	
+	
+	
+	
+	//get current player symbol
 	public void currentplayersymbol(int k) {
 		String location="/Images/Player "+k+".png";
 		lblrollpalyersymbol.setIcon(new ImageIcon(game.class.getResource(location)));
@@ -1054,6 +1095,8 @@ public class game extends JFrame {
 				player[p].name="player "+p;
 			}
 	
+	
+			
 				
 		
 		
@@ -1518,7 +1561,7 @@ public class game extends JFrame {
         
         lblrollpalyersymbol = new JLabel("");
         lblrollpalyersymbol.setIcon(new ImageIcon(game.class.getResource("/images/player 1.png")));
-        lblrollpalyersymbol.setBounds(1287, 321, 50, 74);
+        lblrollpalyersymbol.setBounds(353, 668, 50, 74);
         contentPane.add(lblrollpalyersymbol);
         
         
@@ -1633,11 +1676,13 @@ public class game extends JFrame {
         		RemoveImage(player[flag].position);
         		
         		dice();
+        		player[flag].rollcount++;
         		player[flag].position+=point;
         	   
         		
         		if(player[flag].position==100) {
-        			JOptionPane.showMessageDialog(null,player[flag].name+" WON!!");
+        			JOptionPane.showMessageDialog(null,player[flag].name+" WON WITHIN "+player[flag].rollcount+ " ROLLES!!");
+                     database(player[flag].name,player[flag].rollcount);
         			lblwinningmessage.setText(player[flag].name.toUpperCase()+" WON");
         			 lblrestartmessage.setVisible(true);
         			rollbutton.setVisible(false);
@@ -1666,13 +1711,13 @@ public class game extends JFrame {
         
         
         
-        rollbutton.setBounds(1231, 408, 152, 60);
+        rollbutton.setBounds(461, 680, 152, 60);
         contentPane.add(rollbutton);
         
         displayroll = new JLabel("");
         displayroll.setForeground(Color.YELLOW);
         displayroll.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 73));
-        displayroll.setBounds(304, 646, 152, 124);
+        displayroll.setBounds(119, 650, 152, 124);
         contentPane.add(displayroll);
         
         JLabel lblNewLabel = new JLabel("DEVELOPED BY \r\nANKIT JOSHI");
@@ -1682,7 +1727,7 @@ public class game extends JFrame {
         
         lblsnake = new JLabel("");
         lblsnake.setIcon(new ImageIcon(game.class.getResource("/images/snakeGIF2.gif")));
-        lblsnake.setBounds(1064, 380, 157, 137);
+        lblsnake.setBounds(1076, 461, 157, 137);
         contentPane.add(lblsnake);
         lblsnake.setVisible(false);
         
@@ -1697,8 +1742,53 @@ public class game extends JFrame {
         lblrestartmessage.setBounds(711, 640, 401, 31);
         contentPane.add(lblrestartmessage);
         lblrestartmessage.setVisible(false);
-       
         
+        JButton btnHighScores = new JButton("HIGH SCORE");
+        btnHighScores.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		
+        		try {
+        			
+        			Class.forName("com.mysql.jdbc.Driver");  
+        			java.sql.Connection con =  DriverManager.getConnection("jdbc:mysql://localhost:3306/game", "root","");
+        			String sql2 ="select playername,rolles from score  where rolles = ( select min(rolles) from score );";
+        			PreparedStatement ps = (PreparedStatement) con.prepareStatement(sql2);
+        			ResultSet ra= ps.executeQuery();
+        			while(ra.next()) {
+        			name2= ra.getString("playername");
+        			point1=ra.getInt("rolles");
+        			
+        			}
+        			highscorepane.setText("NAME :   "+name2.toUpperCase());
+        			highscorepoint.setText("ROLLES :   "+point1);
+        			
+        			highscorepane.setVisible(true);
+        			highscorepoint.setVisible(true);
+        		}
+        		catch(Exception e2) {
+        			System.out.println(e2);
+        		}
+        		
+        		
+        	}
+        });
+        btnHighScores.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        btnHighScores.setBounds(1198, 217, 146, 36);
+        contentPane.add(btnHighScores);
+        
+        highscorepane = new JLabel();
+        highscorepane.setForeground(Color.BLACK);
+        highscorepane.setFont(new Font("Viner Hand ITC", Font.BOLD | Font.ITALIC, 20));
+        highscorepane.setBounds(1134, 277, 225, 42);
+        contentPane.add(highscorepane);
+        
+        highscorepoint = new JLabel("");
+        highscorepoint.setForeground(Color.BLACK);
+        highscorepoint.setFont(new Font("Viner Hand ITC", Font.BOLD | Font.ITALIC, 20));
+        highscorepoint.setBounds(1134, 312, 186, 42);
+        contentPane.add(highscorepoint);
+	     highscorepane.setVisible(false);
+	     highscorepoint.setVisible(false);
        
 		
 		
@@ -1708,4 +1798,3 @@ public class game extends JFrame {
 		}
 
 		
-
