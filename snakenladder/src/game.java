@@ -513,7 +513,7 @@ public class game extends JFrame {
 			
 			Class.forName("com.mysql.jdbc.Driver");  
 			java.sql.Connection con =  DriverManager.getConnection("jdbc:mysql://localhost:3306/game", "root","");
-			java.sql.PreparedStatement ps =con.prepareStatement("insert into score (playername,rolles) values(?,?);");
+			java.sql.PreparedStatement ps =con.prepareStatement("insert into score (playername,rolls) values(?,?);");
 		    ps.setString(1,name);
 		    ps.setLong(2,rollcount);
 		    int cc = ps.executeUpdate();
@@ -1067,7 +1067,7 @@ public class game extends JFrame {
 		
 	public void initialize() {
 		// to get the correct number of players.
-		try{  JOptionPane.showMessageDialog(null, "Welcome!! to Snake and Ladder game developed by Ankit Joshi");
+		try{  JOptionPane.showMessageDialog(null, "Welcome!! to Snake and Ladder game developed by Ankit Joshi and Shriram Jaibhai");
 			do{				
 				JOptionPane.showMessageDialog(null, "Players must be between 2-4!");
 				nop = Integer.parseInt(JOptionPane.showInputDialog("Enter No of players"));
@@ -1113,6 +1113,7 @@ public class game extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
 		
 		
 		// declaring labels for snake and ladder board boxes.
@@ -1681,7 +1682,7 @@ public class game extends JFrame {
         	   
         		
         		if(player[flag].position==100) {
-        			JOptionPane.showMessageDialog(null,player[flag].name+" WON WITHIN "+player[flag].rollcount+ " ROLLES!!");
+        			JOptionPane.showMessageDialog(null,player[flag].name+" WON WITHIN "+player[flag].rollcount+ " ROLLS!!");
                      database(player[flag].name,player[flag].rollcount);
         			lblwinningmessage.setText(player[flag].name.toUpperCase()+" WON");
         			 lblrestartmessage.setVisible(true);
@@ -1720,8 +1721,8 @@ public class game extends JFrame {
         displayroll.setBounds(119, 650, 152, 124);
         contentPane.add(displayroll);
         
-        JLabel lblNewLabel = new JLabel("DEVELOPED BY \r\nANKIT JOSHI");
-        lblNewLabel.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 27));
+        JLabel lblNewLabel = new JLabel("DEVELOPED BY \r\nANKIT JOSHI AND SHRIRAM JAIBHAI");
+        lblNewLabel.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 18));
         lblNewLabel.setBounds(1007, 680, 499, 74);
         contentPane.add(lblNewLabel);
         
@@ -1751,16 +1752,16 @@ public class game extends JFrame {
         			
         			Class.forName("com.mysql.jdbc.Driver");  
         			java.sql.Connection con =  DriverManager.getConnection("jdbc:mysql://localhost:3306/game", "root","");
-        			String sql2 ="select playername,rolles from score  where rolles = ( select min(rolles) from score );";
+        			String sql2 ="select playername,rolls from score  where rolls = ( select min(rolls) from score );";
         			PreparedStatement ps = (PreparedStatement) con.prepareStatement(sql2);
         			ResultSet ra= ps.executeQuery();
         			while(ra.next()) {
         			name2= ra.getString("playername");
-        			point1=ra.getInt("rolles");
+        			point1=ra.getInt("rolls");
         			
         			}
         			highscorepane.setText("NAME :   "+name2.toUpperCase());
-        			highscorepoint.setText("ROLLES :   "+point1);
+        			highscorepoint.setText("ROLLS :   "+point1);
         			
         			highscorepane.setVisible(true);
         			highscorepoint.setVisible(true);
