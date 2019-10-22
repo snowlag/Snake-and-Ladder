@@ -10,7 +10,7 @@ To create the database here are the steps-
    SQL Querry- create table score
                ( sno int primary key
                  playername varchar(50) 
-                 rolles int
+                 rolls int
                );
   6) Download the mysql connector driver.
     windows link-https://cdn.mysql.com//Downloads/Connector-J/mysql-connector-java-5.1.48.zip
